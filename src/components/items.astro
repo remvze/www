@@ -7,7 +7,7 @@ interface Item {
   title: string;
   description: string;
   url: string;
-  date?: Date;
+  date?: string;
 }
 
 interface Props {
@@ -31,7 +31,7 @@ const { items, blank = false } = Astro.props;
           <span>{blank ? <MdArrowOutward /> : <MdArrowForward />}</span>
         </a>
         <p class="desc">{item.description}</p>
-        {item.date && <p class="date">{formatDate(item.date)}</p>}
+        {item.date && <p class="date">{item.date}</p>}
       </li>
     ))
   }

@@ -19,9 +19,13 @@ const links = [
 
 <Section title="About">
   <p class="text">
-    I’m an independent (design) engineer who designs through code. I care deeply
-    about crafting elegant, intuitive user interfaces while writing clean,
-    scalable code.
+    I'm an independent design engineer, founder, and AI explorer. I spend my
+    days crafting elegant interfaces and my nights pushing the boundaries of
+    what’s possible with generative AI.
+  </p>
+
+  <p class="text">
+    Currently founder @ <a href="https://philosophors.com">Philosophors</a>.
   </p>
 
   <div class="links">
@@ -32,6 +36,19 @@ const links = [
 <style>
   .text {
     color: var(--color-foreground-subtle);
+
+    &:not(:last-of-type) {
+      margin-bottom: 20px;
+    }
+
+    & a {
+      color: var(--color-foreground);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-decoration-color: var(--color-foreground-subtler);
+      text-underline-offset: 4px;
+      font-weight: 500;
+    }
   }
 
   .links {
