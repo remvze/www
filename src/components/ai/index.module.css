@@ -1,0 +1,53 @@
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  touch-action: none;
+  background: var(--color-neutral-50);
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.imageCard {
+  position: absolute;
+  background: var(--color-neutral-100);
+  user-select: none;
+  will-change: transform;
+  overflow: hidden;
+}
+
+.imageCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageCard:hover img {
+  transform: scale(1.1);
+}
+
+.back {
+  position: fixed;
+  z-index: 999;
+  background: var(--color-neutral-950);
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: var(--font-md);
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  color: var(--color-neutral-50);
+  text-decoration: none;
+}
