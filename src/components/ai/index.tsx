@@ -9,10 +9,11 @@ import {
 import { MdArrowBack } from "react-icons/md";
 
 import styles from "./index.module.css";
+import { reverseArray } from "@/helpers/array";
 
 interface PhotographyAsset {
   url: string;
-  title: string;
+  title?: string;
 }
 
 interface GridSlot extends PhotographyAsset {
@@ -36,18 +37,30 @@ const CELL_HEIGHT = 380;
 const GAP = 30;
 const INITIAL_PADDING = 100;
 
-const MY_PHOTOGRAPHY: PhotographyAsset[] = [
-  { url: "https://picsum.photos/id/10/1000/1000", title: "Project 01" },
-  { url: "https://picsum.photos/id/11/1000/1000", title: "Project 02" },
-  { url: "https://picsum.photos/id/12/1000/1000", title: "Project 03" },
-  { url: "https://picsum.photos/id/13/1000/1000", title: "Project 04" },
-  { url: "https://picsum.photos/id/14/1000/1000", title: "Project 05" },
-  { url: "https://picsum.photos/id/15/1000/1000", title: "Project 06" },
-  { url: "https://picsum.photos/id/16/1000/1000", title: "Project 07" },
-  { url: "https://picsum.photos/id/17/1000/1000", title: "Project 08" },
-  { url: "https://picsum.photos/id/18/1000/1000", title: "Project 09" },
-  { url: "https://picsum.photos/id/19/1000/1000", title: "Project 10" },
-];
+const MY_PHOTOGRAPHY: PhotographyAsset[] = reverseArray([
+  { url: "/images/ai/0001.webp" },
+  { url: "/images/ai/0002.webp" },
+  { url: "/images/ai/0003.webp" },
+  { url: "/images/ai/0004.webp" },
+  { url: "/images/ai/0005.webp" },
+  { url: "/images/ai/0006.webp" },
+  { url: "/images/ai/0007.webp" },
+  { url: "/images/ai/0008.webp" },
+  { url: "/images/ai/0009.webp" },
+  { url: "/images/ai/0010.webp" },
+  { url: "/images/ai/0011.webp" },
+  { url: "/images/ai/0012.webp" },
+  { url: "/images/ai/0013.webp" },
+  { url: "/images/ai/0014.webp" },
+  { url: "/images/ai/0015.webp" },
+  { url: "/images/ai/0016.webp" },
+  { url: "/images/ai/0017.webp" },
+  { url: "/images/ai/0018.webp" },
+  { url: "/images/ai/0019.webp" },
+  { url: "/images/ai/0020.webp" },
+  { url: "/images/ai/0021.webp" },
+  { url: "/images/ai/0022.webp" },
+]);
 
 export default function InfiniteGrid() {
   const mapX = useMotionValue(INITIAL_PADDING);
@@ -178,7 +191,11 @@ function GridItem({
       className={styles.imageCard}
       style={{ x, y, opacity, width: CELL_WIDTH, height: CELL_HEIGHT }}
     >
-      <img src={data.url} alt={data.title} loading="lazy" />
+      <img
+        src={data.url}
+        alt={data.title || "Untitled AI Generated Image"}
+        loading="lazy"
+      />
     </motion.div>
   );
 }
