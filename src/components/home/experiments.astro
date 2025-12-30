@@ -1,0 +1,9 @@
+---
+import Section from "../section.astro";
+import List from "../list.astro";
+import { experiments } from "@/data/experiments";
+---
+
+<Section title="Experiments" more={{ label: "view all", url: "/experiments" }}>
+  <List items={experiments} />
+</Section>

@@ -1,0 +1,10 @@
+---
+import Experiment from "@/layouts/experiment.astro";
+import { CookieSettings as Component } from "@/components/experiments/cookie-settings";
+---
+
+<Experiment
+  source="https://github.com/remvze/www/blob/main/src/components/experiments/cookie-settings/index.tsx"
+>
+  <Component client:load />
+</Experiment>

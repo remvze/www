@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/layout.astro";
+import Container from "@/components/container.astro";
+import Hero from "@/components/hero.astro";
+import List from "@/components/experiments/list.astro";
+import Footer from "@/components/footer.astro";
+---
+
+<Layout>
+  <Container>
+    <Hero
+      title="Experiments"
+      description="Tiny UI component designs."
+      backLabel="Home"
+      backUrl="/"
+    />
+    <List />
+    <Footer />
+  </Container>
+</Layout>

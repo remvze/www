@@ -1,0 +1,68 @@
+.container {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.imageWrapper {
+  & img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin: 0;
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  min-height: 100dvh;
+  padding: 200px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .overlay {
+    z-index: 10;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+  }
+
+  & .content {
+    z-index: 11;
+    width: min(450px, min(80vw, 80vh));
+    position: relative;
+
+    & img {
+      display: block;
+      aspect-ratio: 1/1;
+      width: 100%;
+    }
+
+    & button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: var(--color-neutral-50);
+      font-size: var(--font-md);
+      z-index: 20;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+    }
+  }
+}

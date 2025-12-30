@@ -1,0 +1,55 @@
+.container {
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.numberWrapper {
+  height: 150px;
+  border: 1px solid var(--color-neutral-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  background: var(--color-neutral-950);
+  border: none;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  font-size: 70px;
+  font-family: var(--font-mono);
+}
+
+.digitWrapper {
+  height: calc(1em + 20px);
+  overflow: hidden;
+  mask-image: linear-gradient(
+    transparent,
+    #000 10px,
+    #000 calc(100% - 10px),
+    transparent
+  );
+
+  & .digits {
+    position: relative;
+
+    & .digit {
+      height: calc(1em + 20px);
+      display: flex;
+      align-items: center;
+    }
+  }
+}

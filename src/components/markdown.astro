@@ -1,0 +1,145 @@
+<div class="markdown">
+  <slot />
+</div>
+
+<style is:global>
+  .markdown {
+    line-height: 1.6;
+    color: var(--color-foreground-subtle);
+
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--color-foreground);
+
+      &::before {
+        display: inline-block;
+        margin-right: 4px;
+        font-family: var(--font-mono);
+        font-weight: 400;
+        color: var(--color-foreground-subtler);
+      }
+    }
+
+    & h1::before {
+      content: "#";
+    }
+
+    & h2::before {
+      content: "##";
+    }
+
+    & h3::before {
+      content: "###";
+    }
+
+    & h4::before {
+      content: "####";
+    }
+
+    & h5::before {
+      content: "#####";
+    }
+
+    & h6::before {
+      content: "######";
+    }
+
+    & p {
+      margin: 1em 0;
+    }
+
+    & a {
+      color: var(--color-foreground);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-decoration-color: var(--color-foreground-subtler);
+    }
+
+    & strong {
+      font-weight: 500;
+      color: var(--color-foreground);
+    }
+
+    & em {
+      font-style: italic;
+    }
+
+    & blockquote {
+      padding: 0.25em 1em;
+      margin: 1em 0;
+      color: var(--color-foreground-subtle);
+      background: linear-gradient(90deg, rgb(24 24 27 / 50%), transparent);
+      border-left: 1px solid var(--color-neutral-600);
+      border-radius: 20px;
+    }
+
+    & ul,
+    & ol {
+      padding-left: 2em;
+      margin: 1em 0;
+    }
+
+    & li {
+      margin: 0.5em 0;
+    }
+
+    & pre {
+      padding: 1em;
+      border-radius: 4px;
+
+      & code {
+        padding: unset;
+        color: unset;
+        background-color: unset;
+      }
+    }
+
+    & code {
+      padding: 0.1em 0.4em;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      color: var(--color-foreground);
+      background-color: var(--color-neutral-100);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: 4px;
+    }
+
+    & hr {
+      margin: 2em 0;
+      border: 0;
+      border-top: 1px solid var(--color-neutral-200);
+    }
+
+    & img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1em auto;
+    }
+
+    & table {
+      width: 100%;
+      margin: 1em 0;
+      border-collapse: collapse;
+    }
+
+    & th,
+    & td {
+      padding: 0.5em;
+      text-align: left;
+      border: 1px solid var(--color-neutral-200);
+    }
+
+    & th {
+      background-color: var(--color-neutral-100);
+    }
+  }
+</style>

@@ -1,0 +1,31 @@
+.instruction {
+  color: var(--color-foreground-subtler);
+  font-size: var(--font-sm);
+  padding-bottom: 100px;
+}
+
+.main {
+  height: 1200px;
+
+  & p {
+    position: sticky;
+    top: 100px;
+    font-size: var(--font-lg);
+    color: var(--color-foreground-subtler);
+
+    & span {
+      transition: 0.2s;
+
+      &.active {
+        color: var(--color-foreground);
+      }
+    }
+  }
+}
+
+& .footer {
+  padding-top: 100px;
+  color: var(--color-foreground-subtler);
+  font-size: var(--font-sm);
+  min-height: 70dvh;
+}

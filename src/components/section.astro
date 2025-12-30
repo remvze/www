@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  more?: {
+    label: string;
+    url: string;
+  };
+}
+
+const { title, more } = Astro.props;
+---
+
+<section class="section">
+  <header>
+    <h2>{title}</h2>
+    {more && <a href={more.url}>({more.label})</a>}
+  </header>
+  <div class="content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    &:not(:last-of-type) {
+      margin-bottom: 90px;
+    }
+
+    & header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+      justify-content: space-between;
+
+      & h2 {
+        font-weight: 500;
+      }
+
+      & a {
+        color: var(--color-foreground-subtler);
+        font-size: var(--font-sm);
+        text-decoration: none;
+        font-weight: 500;
+      }
+    }
+  }
+</style>

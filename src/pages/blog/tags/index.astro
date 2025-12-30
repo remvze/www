@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import alphaSort from "alpha-sort";
+
+import Layout from "@/layouts/layout.astro";
+import Container from "@/components/container.astro";
+import Hero from "@/components/hero.astro";
+import Footer from "@/components/footer.astro";
+
+const posts = await getCollection("blog");
+const tags = [
+  ...new Set(posts.map((post) => post.data.tags || []).flat()),
+].sort(alphaSort());
+---
+
+<Layout>
+  <Container>
+    <Hero
+      title="Tags"
+      description="Explore posts by tags."
+      backLabel="Blog"
+      backUrl="/blog"
+    />
+
+    <section class="tags">
+      {tags.map((tag) => <a href={`/blog/tags/${tag}`}>#{tag}</a>)}
+    </section>
+
+    <Footer />
+  </Container>
+</Layout>
+
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    & a {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--font-sm);
+      color: var(--color-foreground-subtle);
+      text-decoration: none;
+    }
+  }
+</style>

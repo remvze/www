@@ -1,0 +1,10 @@
+---
+import Experiment from "@/layouts/experiment.astro";
+import { TabBar as TabBarComponent } from "@/components/experiments/tab-bar";
+---
+
+<Experiment
+  source="https://github.com/remvze/www/blob/main/src/components/experiments/tab-bar/index.tsx"
+>
+  <TabBarComponent client:load />
+</Experiment>

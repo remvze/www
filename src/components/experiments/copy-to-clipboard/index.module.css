@@ -1,0 +1,65 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 450px;
+}
+
+.textarea {
+  width: 100%;
+  resize: none;
+  height: 150px;
+  background: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-300);
+  font-size: var(--font-sm);
+  color: var(--color-foreground);
+  padding: 16px;
+  transition: 0.2s;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-neutral-200);
+  }
+}
+
+.buttonWrapper {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-2xsm);
+  letter-spacing: 1px;
+  color: var(--color-foreground-subtle);
+  font-weight: 500;
+  height: 44px;
+  padding: 0 20px;
+  background: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  transition: 0.2s;
+  cursor: pointer;
+  column-gap: 7px;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: var(--color-neutral-200);
+    color: var(--color-foreground);
+  }
+}
+
+.label {
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+  white-space: nowrap;
+  text-wrap: nowrap;
+
+  & span {
+    display: inline-block;
+  }
+}

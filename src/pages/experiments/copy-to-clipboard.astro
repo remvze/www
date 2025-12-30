@@ -1,0 +1,10 @@
+---
+import Experiment from "@/layouts/experiment.astro";
+import { CopyToClipboard as Component } from "@/components/experiments/copy-to-clipboard";
+---
+
+<Experiment
+  source="https://github.com/remvze/www/blob/main/src/components/experiments/copy-to-clipboard/index.tsx"
+>
+  <Component client:load />
+</Experiment>

@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content"; // eslint-disable-line
+
+import Layout from "@/layouts/layout.astro";
+import Container from "@/components/container.astro";
+import Hero from "@/components/hero.astro";
+import List from "@/components/list.astro";
+import Footer from "@/components/footer.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tagsObj = posts.reduce(
+    (obj, post) => {
+      for (const tag of post.data.tags || []) {
+        if (!obj[tag]) obj[tag] = [];
+
+        obj[tag].unshift(post);
+      }
+
+      return obj;
+    },
+    {} as Record<string, typeof posts>
+  );
+
+  const tags = Object.keys(tagsObj);
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { posts: tagsObj[tag] },
+  }));
+}
+
+const { posts } = Astro.props;
+const { tag } = Astro.params;
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const normalizedPosts = sortedPosts.map((post) => ({
+  date: post.data.date.toISOString(),
+  url: `/blog/${post.id}`,
+  title: post.data.title,
+}));
+---
+
+<Layout>
+  <Container>
+    <Hero
+      title={`#${tag}`}
+      description={`Posts tagged with #${tag}.`}
+      backLabel="Tags"
+      backUrl="/blog/tags"
+    />
+    <List items={normalizedPosts} />
+    <Footer />
+  </Container>
+</Layout>

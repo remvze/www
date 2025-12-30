@@ -1,0 +1,68 @@
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 28px;
+  border: none;
+  background: #f43f5e;
+  color: var(--color-foreground);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  & span {
+    display: inline-block;
+  }
+}
+
+.undoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 8px 0 28px;
+  border: none;
+  background: rgba(244, 63, 94, 0.2);
+  color: var(--color-foreground);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  cursor: pointer;
+  column-gap: 16px;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+
+  & .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: rgba(244, 63, 94, 0.2);
+  }
+
+  & span {
+    display: inline-block;
+    z-index: 10;
+  }
+
+  & .counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #f43f5e;
+    font-family: var(--font-mono);
+    font-size: var(--font-xsm);
+    font-weight: 500;
+    border-radius: 50%;
+    z-index: 10;
+
+    & span {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+---
+import Experiment from "@/layouts/experiment.astro";
+import { AnimatedNumberCounter as AnimatedNumberCounterComponent } from "@/components/experiments/animated-number-counter";
+---
+
+<Experiment
+  source="https://github.com/remvze/www/blob/main/src/components/experiments/animated-number-counter/index.tsx"
+>
+  <AnimatedNumberCounterComponent client:load />
+</Experiment>
