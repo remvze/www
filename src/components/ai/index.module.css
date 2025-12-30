@@ -30,24 +30,87 @@
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.imageCard p {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  line-height: 1;
+  font-size: var(--font-2xsm);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+}
+
 .imageCard:hover img {
   transform: scale(1.1);
 }
 
-.back {
+.socials {
   position: fixed;
-  z-index: 999;
-  background: var(--color-neutral-950);
-  top: 20px;
-  left: 20px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  font-size: var(--font-2xsm);
+  font-weight: 500;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  font-size: var(--font-md);
-  mix-blend-mode: difference;
-  border-radius: 50%;
-  color: var(--color-neutral-50);
-  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 12px;
+  border-radius: 999px;
+
+  & a {
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+}
+
+.name {
+  z-index: 10;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-size: clamp(48px, 8vw, 92px);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  pointer-events: none;
+
+  & span {
+    display: block;
+    line-height: 0.9;
+    height: 1em;
+    overflow: hidden;
+
+    &.title {
+      font-size: 0.6em;
+
+      & i {
+        font-style: italic;
+      }
+    }
+
+    &.instruction {
+      font-size: 18px;
+      font-style: italic;
+      margin-top: 12px;
+      text-transform: lowercase;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 3;
 }
