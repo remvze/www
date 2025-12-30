@@ -5,13 +5,14 @@ import {
   useSpring,
   useTransform,
   MotionValue,
-  MotionConfig,
 } from "motion/react";
+import { FaInfo } from "react-icons/fa6";
 
 import { cn } from "@/helpers/styles";
 import { reverseArray } from "@/helpers/array";
 
 import styles from "./index.module.css";
+import { Modal } from "../modal";
 
 interface PhotographyAsset {
   url: string;
@@ -82,6 +83,8 @@ export default function InfiniteGrid() {
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+
   useEffect(() => {
     if ("fonts" in document) {
       document.fonts.ready.then(() => {
@@ -150,95 +153,121 @@ export default function InfiniteGrid() {
   if (!isMounted) return <div className={styles.viewport} />;
 
   return (
-    <div className={styles.viewport} onWheel={handleWheel}>
-      <div className={styles.overlay} />
+    <>
+      <div className={styles.viewport} onWheel={handleWheel}>
+        <div className={styles.overlay} />
 
-      <h1 className={styles.name}>
-        {[
-          {
-            text: (
-              <>
-                <i>Design</i> Engineer
-              </>
-            ),
-            delay: 0,
-            type: "title",
-          },
-          { text: "(Maze Heart)", delay: 0.15, type: "main" },
-          {
-            text: (
-              <>
-                & AI <i>Explorer</i>.
-              </>
-            ),
-            delay: 0.3,
-            type: "title",
-          },
-        ].map((line, i) => (
-          <span
-            key={i}
-            className={cn(styles.line, line.type === "title" && styles.title)}
-          >
-            <motion.span
-              initial={{ y: "100%", skewY: 7 }}
-              animate={
-                fontsLoaded ? { y: 0, skewY: 0 } : { y: "100%", skewY: 7 }
-              }
-              transition={{
-                duration: 1.4,
-                ease: [0.76, 0, 0.24, 1],
-                delay: line.delay,
-              }}
-              style={{ display: "block", originX: 0 }}
+        <h1 className={styles.name}>
+          {[
+            {
+              text: (
+                <>
+                  <i>Design</i> Engineer
+                </>
+              ),
+              delay: 0,
+              type: "title",
+            },
+            { text: "(Maze Heart)", delay: 0.15, type: "main" },
+            {
+              text: (
+                <>
+                  & AI <i>Explorer</i>.
+                </>
+              ),
+              delay: 0.3,
+              type: "title",
+            },
+          ].map((line, i) => (
+            <span
+              key={i}
+              className={cn(styles.line, line.type === "title" && styles.title)}
             >
-              {line.text}
-            </motion.span>
-          </span>
-        ))}
+              <motion.span
+                initial={{ y: "100%", skewY: 7 }}
+                animate={
+                  fontsLoaded ? { y: 0, skewY: 0 } : { y: "100%", skewY: 7 }
+                }
+                transition={{
+                  duration: 1.4,
+                  ease: [0.76, 0, 0.24, 1],
+                  delay: line.delay,
+                }}
+                style={{ display: "block", originX: 0 }}
+              >
+                {line.text}
+              </motion.span>
+            </span>
+          ))}
 
-        <motion.span
-          className={styles.instruction}
-          initial={{ opacity: 0 }}
-          animate={fontsLoaded ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 1.2, duration: 1 }}
+          <motion.span
+            className={styles.instruction}
+            initial={{ opacity: 0 }}
+            animate={fontsLoaded ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: 1.2, duration: 1 }}
+          >
+            (move around)
+          </motion.span>
+        </h1>
+
+        <div className={styles.navbar}>
+          <div className={styles.socials}>
+            {[
+              { name: "x.", url: "https://x.com/remvze" },
+              { name: "gh.", url: "https://github.com/remvze" },
+              { name: "ig.", url: "https://instagram.com/remvze" },
+              { name: "li.", url: "https://linkedin.com/in/remvze" },
+            ].map((social) => (
+              <a href={social.url} target="_blank">
+                {social.name}
+              </a>
+            ))}
+          </div>
+
+          <button
+            className={styles.infoButton}
+            onClick={() => setIsInfoOpen(true)}
+          >
+            <FaInfo />
+          </button>
+        </div>
+
+        <motion.div
+          className={styles.canvas}
+          onPan={handlePan}
+          style={{ cursor: "grab" }}
+          whileTap={{ cursor: "grabbing" }}
         >
-          (move around)
-        </motion.span>
-      </h1>
-
-      <div className={styles.socials}>
-        {[
-          { name: "x.", url: "https://x.com/remvze" },
-          { name: "gh.", url: "https://github.com/remvze" },
-          { name: "ig.", url: "https://instagram.com/remvze" },
-          { name: "li.", url: "https://linkedin.com/in/remvze" },
-        ].map((social) => (
-          <a href={social.url} target="_blank">
-            {social.name}
-          </a>
-        ))}
+          {gridLayout.slots.map((slot) => (
+            <GridItem
+              key={slot.id}
+              data={slot}
+              mapX={springX}
+              mapY={springY}
+              winSize={winSize}
+              totalW={gridLayout.totalW}
+              totalH={gridLayout.totalH}
+              index={slot.index}
+            />
+          ))}
+        </motion.div>
       </div>
 
-      <motion.div
-        className={styles.canvas}
-        onPan={handlePan}
-        style={{ cursor: "grab" }}
-        whileTap={{ cursor: "grabbing" }}
-      >
-        {gridLayout.slots.map((slot) => (
-          <GridItem
-            key={slot.id}
-            data={slot}
-            mapX={springX}
-            mapY={springY}
-            winSize={winSize}
-            totalW={gridLayout.totalW}
-            totalH={gridLayout.totalH}
-            index={slot.index}
-          />
-        ))}
-      </motion.div>
-    </div>
+      <Modal show={isInfoOpen} onClose={() => setIsInfoOpen(false)}>
+        <div className={styles.info}>
+          <h2>About Me</h2>
+          <p>
+            I'm an independent design engineer, founder, and AI explorer. I
+            spend my days crafting elegant interfaces and my nights pushing the
+            boundaries of what’s possible with generative AI.
+          </p>
+          <p>
+            Currently founder @{" "}
+            <a href="https://philosophors.com">Philosophors</a>.
+          </p>
+        </div>
+      </Modal>
+    </>
   );
 }
 

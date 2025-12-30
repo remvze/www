@@ -1,21 +1,8 @@
 ---
 import Layout from "@/layouts/layout.astro";
-import Container from "@/components/container.astro";
-import Footer from "@/components/footer.astro";
-import Hero from "@/components/home/hero.astro";
-import About from "@/components/home/about.astro";
-import Bookmarks from "@/components/home/bookmarks.astro";
-import Blog from "@/components/home/blog.astro";
-import Experiments from "@/components/home/experiments.astro";
+import Main from "@/components/main";
 ---
 
 <Layout>
-  <Container>
-    <Hero />
-    <About />
-    <Blog />
-    <Bookmarks />
-    <Experiments />
-    <Footer />
-  </Container>
+  <Main client:load />
 </Layout>
