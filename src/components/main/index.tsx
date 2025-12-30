@@ -7,6 +7,13 @@ import {
   MotionValue,
 } from "motion/react";
 import { FaInfo } from "react-icons/fa6";
+import {
+  IoSparklesSharp,
+  IoBookmarkSharp,
+  IoEyeSharp,
+  IoEyeOffSharp,
+} from "react-icons/io5";
+import { MdNotes } from "react-icons/md";
 
 import { cn } from "@/helpers/styles";
 import { reverseArray } from "@/helpers/array";
@@ -84,6 +91,7 @@ export default function InfiniteGrid() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isFullView, setIsFullView] = useState(false);
 
   useEffect(() => {
     if ("fonts" in document) {
@@ -155,82 +163,114 @@ export default function InfiniteGrid() {
   return (
     <>
       <div className={styles.viewport} onWheel={handleWheel}>
-        <div className={styles.overlay} />
+        {!isFullView && <div className={styles.overlay} />}
 
-        <h1 className={styles.name}>
-          {[
-            {
-              text: (
-                <>
-                  <i>Design</i> Engineer
-                </>
-              ),
-              delay: 0,
-              type: "title",
-            },
-            { text: "(Maze Heart)", delay: 0.15, type: "main" },
-            {
-              text: (
-                <>
-                  & AI <i>Explorer</i>.
-                </>
-              ),
-              delay: 0.3,
-              type: "title",
-            },
-          ].map((line, i) => (
-            <span
-              key={i}
-              className={cn(styles.line, line.type === "title" && styles.title)}
-            >
-              <motion.span
-                initial={{ y: "100%", skewY: 7 }}
-                animate={
-                  fontsLoaded ? { y: 0, skewY: 0 } : { y: "100%", skewY: 7 }
-                }
-                transition={{
-                  duration: 1.4,
-                  ease: [0.76, 0, 0.24, 1],
-                  delay: line.delay,
-                }}
-                style={{ display: "block", originX: 0 }}
-              >
-                {line.text}
-              </motion.span>
-            </span>
-          ))}
-
-          <motion.span
-            className={styles.instruction}
-            initial={{ opacity: 0 }}
-            animate={fontsLoaded ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 1.2, duration: 1 }}
-          >
-            (move around)
-          </motion.span>
-        </h1>
-
-        <div className={styles.navbar}>
-          <div className={styles.socials}>
-            {[
-              { name: "x.", url: "https://x.com/remvze" },
-              { name: "gh.", url: "https://github.com/remvze" },
-              { name: "ig.", url: "https://instagram.com/remvze" },
-              { name: "li.", url: "https://linkedin.com/in/remvze" },
-            ].map((social) => (
-              <a href={social.url} target="_blank">
-                {social.name}
-              </a>
-            ))}
+        <header className={styles.header}>
+          <div className={styles.headerGroup}>
+            {!isFullView && (
+              <>
+                <img src="/images/avatar.webp" alt="Maze Heart's Avatar" />
+                <a href="/blog">
+                  <MdNotes />
+                </a>
+                <a href="/experiments">
+                  <IoSparklesSharp />
+                </a>
+                <a href="/bookmarks">
+                  <IoBookmarkSharp />
+                </a>
+              </>
+            )}
           </div>
 
-          <button
-            className={styles.infoButton}
-            onClick={() => setIsInfoOpen(true)}
-          >
-            <FaInfo />
-          </button>
-        </div>
+          <div className={styles.headerGroup}>
+            <button onClick={() => setIsFullView((prev) => !prev)}>
+              <IoEyeSharp />
+            </button>
+          </div>
+        </header>
+
+        {!isFullView && (
+          <h1 className={styles.name}>
+            {[
+              {
+                text: (
+                  <>
+                    <i>Design</i> Engineer
+                  </>
+                ),
+                delay: 0,
+                type: "title",
+              },
+              { text: "(Maze Heart)", delay: 0.15, type: "main" },
+              {
+                text: (
+                  <>
+                    & AI <i>Explorer</i>.
+                  </>
+                ),
+                delay: 0.3,
+                type: "title",
+              },
+            ].map((line, i) => (
+              <span
+                key={i}
+                className={cn(
+                  styles.line,
+                  line.type === "title" && styles.title
+                )}
+              >
+                <motion.span
+                  initial={{ y: "100%", skewY: 7 }}
+                  animate={
+                    fontsLoaded ? { y: 0, skewY: 0 } : { y: "100%", skewY: 7 }
+                  }
+                  transition={{
+                    duration: 1.4,
+                    ease: [0.76, 0, 0.24, 1],
+                    delay: line.delay,
+                  }}
+                  style={{ display: "block", originX: 0 }}
+                >
+                  {line.text}
+                </motion.span>
+              </span>
+            ))}
+
+            <motion.span
+              className={styles.instruction}
+              initial={{ opacity: 0 }}
+              animate={fontsLoaded ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 1.2, duration: 1 }}
+            >
+              (move around)
+            </motion.span>
+          </h1>
+        )}
+
+        {!isFullView && (
+          <div className={styles.navbar}>
+            <div className={styles.socials}>
+              {[
+                { name: "x.", url: "https://x.com/remvze" },
+                { name: "gh.", url: "https://github.com/remvze" },
+                { name: "ig.", url: "https://instagram.com/remvze" },
+                { name: "li.", url: "https://linkedin.com/in/remvze" },
+              ].map((social) => (
+                <a href={social.url} target="_blank">
+                  {social.name}
+                </a>
+              ))}
+            </div>
+
+            <button
+              className={styles.infoButton}
+              onClick={() => setIsInfoOpen(true)}
+            >
+              <FaInfo />
+            </button>
+          </div>
+        )}
 
         <motion.div
           className={styles.canvas}
@@ -257,9 +297,10 @@ export default function InfiniteGrid() {
         <div className={styles.info}>
           <h2>About Me</h2>
           <p>
-            I'm an independent design engineer, founder, and AI explorer. I
-            spend my days crafting elegant interfaces and my nights pushing the
-            boundaries of what’s possible with generative AI.
+            I'm an independent design engineer, founder, and AI explorer. My
+            work sits at the intersection of design, engineering, and curation.
+            I spend my days crafting elegant interfaces and my nights pushing
+            the boundaries of what’s possible with generative AI.
           </p>
           <p>
             Currently founder @{" "}

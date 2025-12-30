@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 9998;
-  background-color: rgb(9 9 11 / 40%);
+  background-color: rgb(9 9 11 / 85%);
   backdrop-filter: blur(5px);
 }
 
@@ -26,7 +26,7 @@
     padding-top: 40px;
     margin: 0 auto;
     pointer-events: fill;
-    background-color: var(--color-neutral-100);
+    background-color: var(--color-neutral-50);
     border: 1px solid var(--color-neutral-200);
 
     & .close {
