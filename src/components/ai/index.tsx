@@ -161,17 +161,17 @@ export default function InfiniteGrid() {
                 <i>Design</i> Engineer
               </>
             ),
-            delay: 1,
+            delay: 0,
             type: "title",
           },
-          { text: "(Maze Heart)", delay: 1.15, type: "main" },
+          { text: "(Maze Heart)", delay: 0.15, type: "main" },
           {
             text: (
               <>
                 & AI <i>Explorer</i>.
               </>
             ),
-            delay: 1.3,
+            delay: 0.3,
             type: "title",
           },
         ].map((line, i) => (
@@ -200,7 +200,7 @@ export default function InfiniteGrid() {
           className={styles.instruction}
           initial={{ opacity: 0 }}
           animate={fontsLoaded ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 2.2, duration: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
         >
           (move around)
         </motion.span>
