@@ -79,7 +79,7 @@
   width: 100%;
   text-align: center;
   transform: translate(-50%, -50%);
-  font-size: clamp(48px, 8vw, 92px);
+  font-size: clamp(54px, 8vw, 92px);
   font-family: var(--font-display);
   text-transform: uppercase;
   pointer-events: none;
