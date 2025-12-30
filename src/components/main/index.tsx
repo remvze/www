@@ -185,7 +185,7 @@ export default function InfiniteGrid() {
 
           <div className={styles.headerGroup}>
             <button onClick={() => setIsFullView((prev) => !prev)}>
-              <IoEyeSharp />
+              {!isFullView ? <IoEyeSharp /> : <IoEyeOffSharp />}
             </button>
           </div>
         </header>
