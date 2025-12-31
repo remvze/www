@@ -79,6 +79,7 @@ const MY_PHOTOGRAPHY: PhotographyAsset[] = reverseArray([
   { url: "/images/ai/0028.webp" },
   { url: "/images/ai/0029.webp" },
   { url: "/images/ai/0030.webp" },
+  { url: "/images/ai/0031.webp" },
 ]);
 
 export default function InfiniteGrid() {
