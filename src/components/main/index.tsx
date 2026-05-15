@@ -142,7 +142,7 @@ export default function InfiniteGrid() {
           col: i % finalCols,
           row: Math.floor(i / finalCols),
         };
-      }
+      },
     );
 
     return { slots, totalW, totalH };
@@ -168,31 +168,6 @@ export default function InfiniteGrid() {
       <div className={styles.viewport} onWheel={handleWheel}>
         {!isFullView && <div className={styles.overlay} />}
 
-        <header className={styles.header}>
-          <div className={styles.headerGroup}>
-            {!isFullView && (
-              <>
-                <img src="/images/avatar.webp" alt="Maze Heart's Avatar" />
-                <a href="/blog">
-                  <MdNotes />
-                </a>
-                <a href="/experiments">
-                  <IoSparklesSharp />
-                </a>
-                <a href="/bookmarks">
-                  <IoBookmarkSharp />
-                </a>
-              </>
-            )}
-          </div>
-
-          <div className={styles.headerGroup}>
-            <button onClick={() => setIsFullView((prev) => !prev)}>
-              {!isFullView ? <IoEyeSharp /> : <IoEyeOffSharp />}
-            </button>
-          </div>
-        </header>
-
         {!isFullView && (
           <h1 className={styles.name}>
             {[
@@ -209,7 +184,7 @@ export default function InfiniteGrid() {
               {
                 text: (
                   <>
-                    & AI <i>Explorer</i>.
+                    & AI <i>Creative</i>.
                   </>
                 ),
                 delay: 0.3,
@@ -220,7 +195,7 @@ export default function InfiniteGrid() {
                 key={i}
                 className={cn(
                   styles.line,
-                  line.type === "title" && styles.title
+                  line.type === "title" && styles.title,
                 )}
               >
                 <motion.span
@@ -251,29 +226,35 @@ export default function InfiniteGrid() {
           </h1>
         )}
 
-        {!isFullView && (
-          <div className={styles.navbar}>
-            <div className={styles.socials}>
-              {[
-                { name: "x.", url: "https://x.com/remvze" },
-                { name: "gh.", url: "https://github.com/remvze" },
-                { name: "ig.", url: "https://instagram.com/remvze" },
-                { name: "li.", url: "https://linkedin.com/in/remvze" },
-              ].map((social) => (
-                <a href={social.url} target="_blank">
-                  {social.name}
-                </a>
-              ))}
-            </div>
+        <div className={styles.navbar}>
+          <a href="/experiments" className={styles.button}>
+            <IoSparklesSharp />
+          </a>
 
-            <button
-              className={styles.infoButton}
-              onClick={() => setIsInfoOpen(true)}
-            >
-              <FaInfo />
-            </button>
+          <div className={styles.socials}>
+            {[
+              { name: "x.", url: "https://x.com/remvze" },
+              { name: "gh.", url: "https://github.com/remvze" },
+              { name: "ig.", url: "https://instagram.com/remvze" },
+              { name: "li.", url: "https://linkedin.com/in/remvze" },
+            ].map((social) => (
+              <a href={social.url} target="_blank">
+                {social.name}
+              </a>
+            ))}
           </div>
-        )}
+
+          <button className={styles.button} onClick={() => setIsInfoOpen(true)}>
+            <FaInfo />
+          </button>
+
+          <button
+            className={styles.button}
+            onClick={() => setIsFullView((prev) => !prev)}
+          >
+            {!isFullView ? <IoEyeSharp /> : <IoEyeOffSharp />}
+          </button>
+        </div>
 
         <motion.div
           className={styles.canvas}
