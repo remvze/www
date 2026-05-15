@@ -56,6 +56,11 @@ const _experiments = [
     url: "/experiments/image-gallery",
     date: "2025-12-20",
   },
+  {
+    title: "Morphing Text Animation",
+    url: "/experiments/morphing-text-animation",
+    date: "2026-05-15",
+  },
 ];
 
 export const experiments = reverseArray(_experiments);
