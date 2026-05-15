@@ -5,15 +5,10 @@ import {
   useSpring,
   useTransform,
   MotionValue,
+  AnimatePresence,
 } from "motion/react";
 import { FaInfo } from "react-icons/fa6";
-import {
-  IoSparklesSharp,
-  IoBookmarkSharp,
-  IoEyeSharp,
-  IoEyeOffSharp,
-} from "react-icons/io5";
-import { MdNotes } from "react-icons/md";
+import { IoSparklesSharp, IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 
 import { cn } from "@/helpers/styles";
 import { reverseArray } from "@/helpers/array";
@@ -166,7 +161,16 @@ export default function InfiniteGrid() {
   return (
     <>
       <div className={styles.viewport} onWheel={handleWheel}>
-        {!isFullView && <div className={styles.overlay} />}
+        <AnimatePresence initial={false}>
+          {!isFullView && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className={styles.overlay}
+            />
+          )}
+        </AnimatePresence>
 
         {!isFullView && (
           <h1 className={styles.name}>
