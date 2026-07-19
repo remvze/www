@@ -2,13 +2,16 @@
 import Layout from "./layout.astro";
 
 interface Props {
+  description: string;
   source: string;
+  title: string;
 }
 
+const { description, title } = Astro.props;
 const source = Astro.props.source || "https://github.com/remvze/www";
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <header class="header">
     <a href="/experiments">(experiments)</a>
     <a href={source} target="_blank">(source code)</a>

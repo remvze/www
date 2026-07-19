@@ -1,0 +1,239 @@
+---
+import Layout from "@/layouts/layout.astro";
+import Container from "@/components/container.astro";
+import { Tagline } from "@/components/home/tagline";
+import Footer from "@/components/footer.astro";
+
+interface Experience {
+  title: string;
+  url: string;
+  desc: string;
+  role: string;
+  date: string;
+}
+
+const experience: Array<Experience> = [
+  {
+    title: "Philosophors",
+    url: "https://philosophors.com",
+    desc: "For those who seek wisdom.",
+    role: "Founder",
+    date: "2021–Present",
+  },
+  {
+    title: "19—57",
+    url: "https://19-57.com",
+    desc: "In the business of inspiration.",
+    role: "Founder",
+    date: "2026–Present",
+  },
+];
+
+interface Project {
+  name: string;
+  desc: string;
+  url: string;
+  date: string;
+}
+
+const projects: Array<Project> = [
+  {
+    name: "Moodist",
+    desc: "Ambient sounds for focus and calm.",
+    url: "https://moodist.mvze.net",
+    date: "2023",
+  },
+  {
+    name: "Haus",
+    desc: "A dead-simple online workstation.",
+    url: "https://use.haus",
+    date: "2025",
+  },
+  {
+    name: "Nothing",
+    desc: "Simply do nothing and just be.",
+    url: "https://usenothing.com",
+    date: "2024",
+  },
+  {
+    name: "PSWD",
+    desc: "Simple secure password generator.",
+    url: "https://pswd.software",
+    date: "2024",
+  },
+];
+---
+
+<Layout
+  title="About"
+  description="An independent design engineer, founder, and AI explorer working across design, engineering, and curation."
+>
+  <Container>
+    <main>
+      <section class="hero">
+        <div class="back">
+          <a href="/"><span>~</span> Home</a>
+        </div>
+        <h1 class="title"><span>Maze Heart</span></h1>
+        <p class="desc">— <Tagline client:load /></p>
+      </section>
+
+      <section class="section about">
+        <h2 class="heading">About Me</h2>
+        <p class="text">
+          I'm an independent design engineer, founder, and AI explorer. My work
+          sits at the intersection of design, engineering, and curation. I spend
+          my days crafting elegant interfaces and my nights pushing the
+          boundaries of what’s possible with generative AI.
+        </p>
+
+        <div class="socials">
+          <a href="https://x.com/remvze" target="_blank">X (Twitter)</a>
+          <a href="https://github.com/remvze" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/remvze" target="_blank">LinkedIn</a>
+        </div>
+      </section>
+
+      <section class="section experience">
+        <h2 class="heading">Experience</h2>
+        <ul>
+          {
+            experience.map((exp) => (
+              <li>
+                <a href={exp.url} class="title" target="_blank">
+                  {exp.title}
+                </a>
+                <p class="desc">{exp.desc}</p>
+                <p class="info">
+                  <strong>{exp.role}</strong> • {exp.date}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="section experience">
+        <h2 class="heading">Projects</h2>
+        <ul>
+          {
+            projects.map((project) => (
+              <li>
+                <a href={project.url} class="title" target="_blank">
+                  {project.name}
+                </a>
+                <p class="desc">{project.desc}</p>
+                <p class="info">{project.date}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+
+    <Footer />
+  </Container>
+</Layout>
+
+<style>
+  .hero {
+    padding: 180px 0 90px;
+
+    & .back {
+      margin-bottom: 24px;
+
+      & a {
+        color: var(--color-foreground-subtle);
+        font-weight: 500;
+        font-size: var(--font-xsm);
+        text-decoration: none;
+
+        & span {
+          color: var(--color-foreground-subtler);
+        }
+      }
+    }
+
+    & .title {
+      font-family: var(--font-display);
+      font-size: var(--font-2xlg);
+
+      & span {
+        background: linear-gradient(
+          135deg,
+          var(--color-foreground),
+          oklch(62.3% 0.214 259.815),
+          var(--color-foreground),
+          var(--color-foreground)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    & .desc {
+      color: var(--color-foreground-subtle);
+    }
+  }
+
+  .section {
+    &:not(:last-of-type) {
+      padding-bottom: 80px;
+    }
+
+    & .heading {
+      font-weight: 500;
+      margin-bottom: 36px;
+    }
+
+    & .text {
+      color: var(--color-foreground-subtle);
+    }
+
+    & ul {
+      list-style: none;
+
+      & li {
+        &:not(:last-of-type) {
+          margin-bottom: 28px;
+        }
+
+        & .title {
+          font-weight: 500;
+          color: var(--color-foreground);
+          text-decoration: none;
+        }
+
+        & .desc {
+          color: var(--color-foreground-subtle);
+        }
+
+        & .info {
+          color: var(--color-foreground-subtler);
+          font-size: var(--font-sm);
+
+          & strong {
+            color: var(--color-foreground);
+          }
+        }
+      }
+    }
+  }
+
+  .about {
+    & .socials {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      & a {
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--color-foreground);
+        font-size: var(--font-sm);
+      }
+    }
+  }
+</style>

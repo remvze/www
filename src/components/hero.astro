@@ -13,8 +13,8 @@ const { title, description, backLabel, backUrl } = Astro.props;
   <div class="back">
     <a href={backUrl}><span>~</span> {backLabel}</a>
   </div>
-  <h1 class="title">{title}</h1>
-  <p class="desc">{description}</p>
+  <h1 class="title"><span>{title}</span></h1>
+  <p class="desc">— {description}</p>
 </section>
 
 <style>
@@ -38,8 +38,20 @@ const { title, description, backLabel, backUrl } = Astro.props;
 
     & .title {
       font-family: var(--font-display);
-      font-size: var(--font-lg);
-      margin-bottom: 4px;
+      font-size: var(--font-2xlg);
+
+      & span {
+        background: linear-gradient(
+          135deg,
+          var(--color-foreground),
+          oklch(62.3% 0.214 259.815),
+          var(--color-foreground),
+          var(--color-foreground)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
 
     & .desc {

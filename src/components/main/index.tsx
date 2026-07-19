@@ -14,7 +14,6 @@ import { cn } from "@/helpers/styles";
 import { reverseArray } from "@/helpers/array";
 
 import styles from "./index.module.css";
-import { Modal } from "../modal";
 
 interface PhotographyAsset {
   url: string;
@@ -88,7 +87,6 @@ export default function InfiniteGrid() {
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [isFullView, setIsFullView] = useState(false);
 
   useEffect(() => {
@@ -231,6 +229,10 @@ export default function InfiniteGrid() {
         )}
 
         <div className={styles.navbar}>
+          <a className={styles.button} href="/about">
+            <FaInfo />
+          </a>
+
           <a href="/experiments" className={styles.button}>
             <IoSparklesSharp />
           </a>
@@ -247,10 +249,6 @@ export default function InfiniteGrid() {
               </a>
             ))}
           </div>
-
-          <button className={styles.button} onClick={() => setIsInfoOpen(true)}>
-            <FaInfo />
-          </button>
 
           <button
             className={styles.button}
@@ -280,22 +278,6 @@ export default function InfiniteGrid() {
           ))}
         </motion.div>
       </div>
-
-      <Modal show={isInfoOpen} onClose={() => setIsInfoOpen(false)}>
-        <div className={styles.info}>
-          <h2>About Me</h2>
-          <p>
-            I'm an independent design engineer, founder, and AI explorer. My
-            work sits at the intersection of design, engineering, and curation.
-            I spend my days crafting elegant interfaces and my nights pushing
-            the boundaries of what’s possible with generative AI.
-          </p>
-          <p>
-            Currently founder @{" "}
-            <a href="https://philosophors.com">Philosophors</a>.
-          </p>
-        </div>
-      </Modal>
     </>
   );
 }

@@ -138,29 +138,7 @@
   z-index: 3;
 }
 
-.info {
-  & h2 {
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
 
-  & p {
-    color: var(--color-foreground-subtle);
-
-    &:not(:last-of-type) {
-      margin-bottom: 20px;
-    }
-
-    & a {
-      color: var(--color-foreground);
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-decoration-color: var(--color-foreground-subtler);
-      text-underline-offset: 4px;
-      font-weight: 500;
-    }
-  }
-}
 
 .header {
   position: fixed;
