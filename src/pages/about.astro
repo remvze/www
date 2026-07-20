@@ -1,4 +1,6 @@
 ---
+import { LuArrowUpRight } from "react-icons/lu";
+
 import Layout from "@/layouts/layout.astro";
 import Container from "@/components/container.astro";
 import { Tagline } from "@/components/home/tagline";
@@ -61,6 +63,12 @@ const projects: Array<Project> = [
     url: "https://pswd.software",
     date: "2024",
   },
+  {
+    name: "Calmness",
+    desc: "Breathing exercise in your browser.",
+    url: "https://calmness.app",
+    date: "2024",
+  },
 ];
 ---
 
@@ -102,6 +110,9 @@ const projects: Array<Project> = [
               <li>
                 <a href={exp.url} class="title" target="_blank">
                   {exp.title}
+                  <span>
+                    <LuArrowUpRight />
+                  </span>
                 </a>
                 <p class="desc">{exp.desc}</p>
                 <p class="info">
@@ -121,6 +132,9 @@ const projects: Array<Project> = [
               <li>
                 <a href={project.url} class="title" target="_blank">
                   {project.name}
+                  <span>
+                    <LuArrowUpRight />
+                  </span>
                 </a>
                 <p class="desc">{project.desc}</p>
                 <p class="info">{project.date}</p>
@@ -203,6 +217,25 @@ const projects: Array<Project> = [
           font-weight: 500;
           color: var(--color-foreground);
           text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.15em;
+
+          &:hover {
+            & span {
+              transform: rotate(45deg);
+            }
+          }
+
+          & span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 0;
+            font-size: var(--font-md);
+            color: var(--color-foreground-subtler);
+            transition: 0.2s;
+          }
         }
 
         & .desc {
